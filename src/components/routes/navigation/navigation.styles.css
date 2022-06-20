@@ -1,0 +1,21 @@
+.navigation {
+  font-size: 1.3em;
+}
+.navigation .toggle-button {
+  color: #fff;
+  background-color: #fff;
+}
+
+.navigation-container .navigation-brand {
+  text-decoration: none;
+}
+
+.list .navigation-item .navigation-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: #fff;
+}

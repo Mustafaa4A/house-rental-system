@@ -1,0 +1,27 @@
+.button {
+  display: block;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  transition: all 1s;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+}
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+  color: #fff;
+}
+.google {
+  background-color: tomato;
+  color: #fff;
+}
+
+.facebook {
+  background-color: blue;
+  color: #fff;
+}
