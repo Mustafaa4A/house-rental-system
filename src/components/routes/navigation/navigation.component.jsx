@@ -4,6 +4,7 @@ import { Fragment, useContext } from "react";
 import "./navigation.styles.css";
 import Button from "../../button/button.component";
 import { UserContext } from "../../../contexts/user.context";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -25,6 +26,7 @@ const Navigation = () => {
                 <Button> </Button>
               </NavLink>
             </Nav>
+            {currentUser && <Link to={"/auth/profile"}>Profile</Link>}
           </Navbar.Collapse>
         </Container>
       </Navbar>

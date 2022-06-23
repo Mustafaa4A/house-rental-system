@@ -1,8 +1,8 @@
 .signin-container {
   width: 100%;
   height: 100vh;
-  background-color: #5c008a;
-  background-image: url("https://www.transparenttextures.com/patterns/xv.png");
+  background-color: #878c00;
+  background-image: url("https://www.transparenttextures.com/patterns/gravel.png");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,20 +11,16 @@
 
 .form-container {
   width: 90%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  max-width: 500px;
+  max-width: 450px;
   border-radius: 10px;
   font-size: 1.1em;
   color: #fff;
 }
 
 .form-container .title {
-  margin-top: 10px;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.form-container .seprator {
+  margin-top: 5px;
+  margin-bottom: 30px;
   text-align: center;
 }

@@ -6,6 +6,8 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 
@@ -45,12 +47,10 @@ export const signInWithFacebook = () => signInWithPopup(auth, facebookProvider);
 const db = getFirestore();
 
 //creating user from auth provider
-export const createUserFromAuth = async (userAuth) => {
+export const createUserFromAuth = async (userAuth, otherData) => {
   const userDoc = await doc(db, "users", userAuth.uid);
 
   const userElement = await getDoc(userDoc);
-
-  console.log(userElement.exists());
 
   if (!userElement.exists()) {
     //
@@ -62,6 +62,7 @@ export const createUserFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...otherData,
       });
     } catch (error) {
       alert(error.message);
@@ -80,7 +81,11 @@ export const createUserFromEmailAndPassword = async (email, password) => {
 //signin with email and password
 export const signInUsingEmailAndPasswor = async (email, password) => {
   if (!email || !password) return;
-  return signInWithEmailAndPassword(auth, email, password);
+  return await signInWithEmailAndPassword(auth, email, password);
 };
-//signin with email and password
-export const singInWithEmail = () => {};
+
+//sign outord
+export const userSignOut = async () => await signOut(auth);
+
+//authlistener
+export const authlistener = (callback) => onAuthStateChanged(auth, callback);

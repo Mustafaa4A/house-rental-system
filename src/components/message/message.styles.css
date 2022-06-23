@@ -1,0 +1,24 @@
+.message-container {
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: all 1s;
+  animation-name: message-animation;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes message-animation {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}

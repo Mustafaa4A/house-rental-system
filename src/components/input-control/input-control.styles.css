@@ -16,6 +16,7 @@
   margin: 10px 0;
   margin-bottom: 25px;
   letter-spacing: 0.1em;
+  transition: all 1s;
 }
 
 .input-container input:focus {

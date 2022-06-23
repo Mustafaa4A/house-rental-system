@@ -1,15 +1,19 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/user.context";
-import Button from "../button/button.component";
-import InputControl from "../input-control/input-control.component";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../contexts/user.context";
+import Button from "../../button/button.component";
+import InputControl from "../../input-control/input-control.component";
+import LineSeparator from "../../line-separator/line-separator.component";
+import Message from "../../message/message.component";
 import {
   createUserFromAuth,
   signInUsingEmailAndPasswor,
   signInWithFacebook,
   signInWithGoogle,
-} from "../utils/firebase/authentication.util";
+} from "../../../utils/firebase/authentication.util";
 import "./sign-in.styles.css";
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { useEffect } from "react";
 
 const DEFAULT_FORM = {
   email: "",
@@ -21,7 +25,6 @@ const SignIn = () => {
   const { email, password } = formFieleds;
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); //navigate
-  const { setCurrentUser } = useContext(UserContext);
 
   //
   const handlerChange = (e) => {
@@ -29,16 +32,20 @@ const SignIn = () => {
     setFormFields({ ...formFieleds, [name]: value });
   };
 
+  //on focus of the input clear the message
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setMessage("");
+  //   }, 10000);
+  // }, [message]);
+
   //form submit login with email and password
   const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const { user } = await signInUsingEmailAndPasswor(email, password);
-      // console.log(user);
-
-      //setting user into context
-      setCurrentUser(user);
+      await signInUsingEmailAndPasswor(email, password);
+      resetForm();
       navigate("/");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
@@ -56,31 +63,39 @@ const SignIn = () => {
         return;
       }
 
+      if (error.code === "auth/too-many-requests") {
+        setMessage("Too may requests");
+        return;
+      }
+
       setMessage("Error Ocurred");
 
       console.log(error.message);
     }
   };
 
+  //
+  const resetForm = () => {
+    setFormFields(DEFAULT_FORM);
+  };
+
   //login with google
   const loginWithGogle = async () => {
-    const { user } = await signInWithGoogle();
-    await createUserFromAuth(user);
-    console.log(user);
+    await signInWithGoogle();
+    navigate("/");
   };
 
   //login with facebook
   const loginWithFacebook = async () => {
-    const { user } = await signInWithFacebook();
-    await createUserFromAuth(user);
-    console.log(user);
+    await signInWithFacebook();
+    navigate("/");
   };
 
   return (
     <div className="signin-container">
       <div className="form-container">
-        <h1 className="title">Login Now !</h1>
-        {message && <div>{message}</div>}
+        <h3 className="title">Login Now !</h3>
+        {message && <Message>{message}</Message>}
         <form onSubmit={onSubmit}>
           <InputControl
             label={"Email"}
@@ -98,9 +113,12 @@ const SignIn = () => {
             required={true}
             onChange={handlerChange}
           />
-          <Button type="submit">LOGIN</Button>
-          <div className="seprator">Or</div>
+          <Button type="submit" className="login">
+            LOGIN
+          </Button>
+          <LineSeparator>OR</LineSeparator>
           <Button type="button" className="google" onClick={loginWithGogle}>
+            <FaGoogle className="icon" />
             Sign In With Google
           </Button>
           <Button
@@ -108,9 +126,13 @@ const SignIn = () => {
             className="facebook"
             onClick={loginWithFacebook}
           >
+            <FaFacebookF className="icon" />
             Sign In With Facebook
           </Button>
         </form>
+        <div className="footer" style={{ textAlign: "center" }}>
+          Create a new account <Link to={"/auth/sign-up"}>Sign Up</Link>
+        </div>
       </div>
     </div>
   );
