@@ -1,9 +1,11 @@
-import "./message.styles.css";
+import { useState } from "react";
 
-const Message = ({ children, type, icon }) => {
+const Modal = ({ children, visible }) => {
+  const [isShowing, setIsShowing] = useState(visible);
+  const show = () => setIsShowing(false);
   return (
     <div
-      className="modal modal-blur fade "
+      className="modal modal-blur fade"
       id="modal"
       tabIndex="-1"
       role="dialog"
@@ -13,18 +15,15 @@ const Message = ({ children, type, icon }) => {
         className="modal-dialog modal-sm modal-dialog-centered"
         role="document"
       >
-        <div className="modal-content shadow">
+        <div className="modal-content">
           <span
             type="button"
             className="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
           ></span>
-          <div className={`modal-status bg-${type}`}></div>
-          <div className="modal-body text-center py-4">
-            {icon && icon}
-            <div className="text-muted">{children}</div>
-          </div>
+          <div className={`modal-status bg-danger`}></div>
+          <div className="modal-body text-center py-4"></div>
           <div className="modal-footer">
             <div className="w-100">
               <div className="row">
@@ -41,5 +40,4 @@ const Message = ({ children, type, icon }) => {
     </div>
   );
 };
-
-export default Message;
+export default Modal;

@@ -1,0 +1,26 @@
+.navigation {
+  font-size: 1.2em;
+  background-color: #fff;
+  /* background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png"); */
+}
+.navigation .toggle-button {
+  background-color: #fff;
+}
+
+.navigation-container .navigation-brand {
+  text-decoration: none;
+}
+
+.list .navigation-item .nav-link {
+  transition: 1s all;
+}
+.list .navigation-item .nav-link:hover {
+  transform: scale(1.1);
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}

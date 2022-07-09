@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../../contexts/user.context";
-import { userSignOut } from "../../../utils/firebase/authentication.util";
-import Button from "../../button/button.component";
+import { UserContext } from "../../contexts/user.context";
+import { userSignOut } from "../../utils/firebase/authentication.util";
+import Button from "../../components/button/button.component";
 const UserProfile = () => {
   //
   const { setCurrentUser } = useContext(UserContext);
