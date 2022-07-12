@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/user.context";
 import "./navigation.styles.css";
 import Navbar from "../../components/navbar/navbar.component";
 import Header from "../../components/header/header.component";
-import Body from "../../components/body/body.component";
+import PageBody from "../../components/page-body/page-body.component";
 import Footer from "../../components/footer/footer.component";
 
 const Navigation = () => {
@@ -13,11 +13,11 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <Header />
-      <Navbar />
-      <Body>
-        <Outlet />
-      </Body>
+      <div className="sticky-top">
+        <Header />
+        <Navbar />
+      </div>
+      <Outlet />
       <Footer />
     </Fragment>
   );

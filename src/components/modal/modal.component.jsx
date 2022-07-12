@@ -1,40 +1,15 @@
-import { useState } from "react";
+import "./modal.styles.css";
 
-const Modal = ({ children, visible }) => {
-  const [isShowing, setIsShowing] = useState(visible);
-  const show = () => setIsShowing(false);
+const Modal = ({ children, size, type, closeModal }) => {
   return (
-    <div
-      className="modal modal-blur fade"
-      id="modal"
-      tabIndex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
+    <div className="modal-bg bg-blur">
       <div
-        className="modal-dialog modal-sm modal-dialog-centered"
-        role="document"
+        className={`modal-container modal-dialog modal-${size} modal-dialog-centered`}
       >
-        <div className="modal-content">
-          <span
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></span>
-          <div className={`modal-status bg-danger`}></div>
-          <div className="modal-body text-center py-4"></div>
-          <div className="modal-footer">
-            <div className="w-100">
-              <div className="row">
-                <div className="col">
-                  <span href="#" className="btn w-100" data-bs-dismiss="modal">
-                    OK
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="modal-content shadow">
+          <span type="button" className="btn-close" onClick={closeModal}></span>
+          <div className={`modal-status bg-${type}`}></div>
+          {children}
         </div>
       </div>
     </div>

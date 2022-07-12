@@ -5,12 +5,7 @@ const InputControl = ({ label, icon, ...otherProps }) => {
     <div className="mb-3">
       <label className="form-label">{label}</label>
       <div className="input-group input-group-flat mt-1">
-        <input
-          className="form-control"
-          autoComplete="off"
-          {...otherProps}
-          required
-        />
+        <input className="form-control" {...otherProps} required />
         {icon && (
           <span className="input-group-text">
             <Link to={""} className="link-secondary" title="Show password">

@@ -27,7 +27,7 @@ const DEFAULT_FORM = {
 const SignIn = () => {
   const [formFieleds, setFormFields] = useState(DEFAULT_FORM);
   const { email, password } = formFieleds;
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
   const navigate = useNavigate(); //navigate
   const [isVisible, setIsVisible] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
@@ -54,27 +54,30 @@ const SignIn = () => {
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setMessage("User not found");
+        setIsShowing(true);
         return;
       }
 
       if (error.code === "auth/wrong-password") {
         setMessage("Worng password");
+        setIsShowing(true);
         return;
       }
 
       if (error.code === "auth/network-request-failed") {
         setMessage("Network Failed");
+        setIsShowing(true);
         return;
       }
 
       if (error.code === "auth/too-many-requests") {
         setMessage("Too may requests");
+        setIsShowing(true);
         return;
       }
 
       setMessage("Error Ocurred");
-
-      console.log(error.message);
+      setIsShowing(true);
     }
   };
 
@@ -95,6 +98,11 @@ const SignIn = () => {
     navigate("/");
   };
 
+  //show modal
+  const modalHandler = () => {
+    setIsShowing(false);
+  };
+
   return (
     <BlankPage>
       <div className="text-center mb-4">
@@ -102,23 +110,17 @@ const SignIn = () => {
           <img src={Logo} height="36" alt="" />
         </Link>
       </div>
-      <span
-        href="#"
-        className="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#modal"
-      >
-        Danger modal
-      </span>
 
-      <Message
-        type={"danger"}
-        icon={<BiError className="display-2 text-danger" />}
-      >
-        {message}
-      </Message>
-
-      <Modal visible={true}>Welcome</Modal>
+      {isShowing && (
+        <Modal size={"sm"} type={"danger"} closeModal={modalHandler}>
+          <Message
+            icon={<BiError className="display-2 text-danger" />}
+            closeModal={modalHandler}
+          >
+            {message}
+          </Message>
+        </Modal>
+      )}
 
       <form className="card card-md" onSubmit={submitHandler}>
         <div className="card-body">
@@ -170,7 +172,7 @@ const SignIn = () => {
       </form>
       <div className="text-center text-muted mt-3">
         Don't have account yet?
-        <Link to={"/sign-up"} tabIndex="-1" className="p-2">
+        <Link to={"/auth/sign-up"} tabIndex="-1" className="p-2">
           Sign up
         </Link>
       </div>

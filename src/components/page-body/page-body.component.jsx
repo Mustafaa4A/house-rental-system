@@ -1,4 +1,6 @@
-const Body = ({ children }) => {
+import Button from "../button/button.component";
+
+const PageBody = ({ children }) => {
   return (
     <div className="page-wrapper">
       <div className="page-body">
@@ -8,4 +10,4 @@ const Body = ({ children }) => {
   );
 };
 
-export default Body;
+export default PageBody;

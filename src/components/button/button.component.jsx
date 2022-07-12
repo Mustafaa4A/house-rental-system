@@ -1,9 +1,13 @@
 import "./button.styles.css";
-const Button = ({ children, icon, ...others }) => {
+const Button = ({ children, bg, icon, ...others }) => {
   return (
-    <button type="button" className="btn btn-white w-100" {...others}>
-      {icon}
-      <span className="m-2 mt-0 mb-0">{children}</span>
+    <button
+      type="button"
+      className={`btn btn-${bg ? bg : "white"} w-100 position-relative`}
+      {...others}
+    >
+      {icon && icon}
+      <span className={icon && "ms-2"}>{children}</span>
     </button>
   );
 };
