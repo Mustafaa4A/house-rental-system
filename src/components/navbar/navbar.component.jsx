@@ -2,9 +2,6 @@ import { FcHome, FcServices, FcOrganization, FcContacts } from "react-icons/fc";
 import { BiBuildingHouse } from "react-icons/bi";
 import NavItem from "../nav-item/nav-item.component";
 import SearchInput from "../search-input/search-input.component";
-import Dropdown from "../dropdown/dropdown.component";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import Avator from "../avator/avator.component";
 
 const Navbar = () => {
   return (
@@ -13,7 +10,7 @@ const Navbar = () => {
         <div className="navbar navbar-light">
           <div className="container-xl">
             <ul className="navbar-nav">
-              <NavItem to={"/"} icon={<FcHome />} active={true}>
+              <NavItem to={"/"} icon={<FcHome />}>
                 Home
               </NavItem>
               <NavItem to={"/about-us"} icon={<FcOrganization />}>

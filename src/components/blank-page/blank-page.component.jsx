@@ -1,5 +1,5 @@
 import "./blank-page.styles.css";
-const BlankPage = ({ children }) => {
+const BlankPage = ({ children, ...other }) => {
   return (
     <div className="border-top-wide border-primary d-flex flex-column">
       <div className="page page-center">

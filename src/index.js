@@ -5,14 +5,24 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+
 import { UserProvider } from "./contexts/user.context";
+import { PropertiesProvider } from "./contexts/properties.context";
+import { UserFavoritesProvider } from "./contexts/user-favorites.contex";
+import { PaymentProvider } from "./contexts/payment.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <PropertiesProvider>
+          <UserFavoritesProvider>
+            <PaymentProvider>
+              <App />
+            </PaymentProvider>
+          </UserFavoritesProvider>
+        </PropertiesProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -18,12 +18,11 @@ import Button from "../button/button.component";
 import "./share-button.styles.css";
 
 const ShareButton = ({ property }) => {
-  const URL = "window.location.href";
+  const URL = window.location.href;
 
   const copyText = () => {
     navigator.clipboard.writeText(URL);
   };
-  console.log(window.location.pathname);
   return (
     <Fragment>
       <span
@@ -36,15 +35,16 @@ const ShareButton = ({ property }) => {
         <h3>Share this property</h3>
         <div className="row m-1">
           <div className="col-12 mt-2">
-            <Button bg={"success"} icon={<BsWhatsapp size={20} />}>
-              <WhatsappShareButton
-                title={"Property\n"}
-                url={URL}
-                separator={""}
-              >
+            <WhatsappShareButton
+              className="d-block w-100"
+              title={"Property\n"}
+              url={URL}
+              separator={""}
+            >
+              <Button bg={"success"} icon={<BsWhatsapp size={20} />}>
                 Whatsapp
-              </WhatsappShareButton>
-            </Button>
+              </Button>
+            </WhatsappShareButton>
           </div>
           <div className="col-6 mt-2">
             <span>
@@ -54,39 +54,42 @@ const ShareButton = ({ property }) => {
             </span>
           </div>
           <div className="col-6 mt-2">
-            <Button bg={"primary"} icon={<RiFacebookCircleLine size={20} />}>
-              <FacebookShareButton
-                title={"Property "}
-                url={URL}
-                quote={"Welcom"}
-                hashtag={`#Property`}
-                description={"Property"}
-              >
+            <FacebookShareButton
+              className="d-block w-100"
+              title={"Property "}
+              url={URL}
+              quote={"Welcom"}
+              hashtag={`#Property`}
+              description={"Property"}
+            >
+              <Button bg={"primary"} icon={<RiFacebookCircleLine size={20} />}>
                 Facebook
-              </FacebookShareButton>
-            </Button>
+              </Button>
+            </FacebookShareButton>
           </div>
           <div className="col-6 mt-2">
-            <Button bg={"secondary"} icon={<MdOutlineMail size={20} />}>
-              <EmailShareButton
-                subject="Property"
-                body="This is a new Property\n"
-                url={URL}
-              >
+            <EmailShareButton
+              className="d-block w-100"
+              subject="Property"
+              body="This is a new Property\n"
+              url={URL}
+            >
+              <Button bg={"secondary"} icon={<MdOutlineMail size={20} />}>
                 Email
-              </EmailShareButton>
-            </Button>
+              </Button>
+            </EmailShareButton>
           </div>
           <div className="col-6 mt-2">
-            <Button bg={"info"} icon={<RiTwitterFill size={20} />}>
-              <TwitterShareButton
-                title="Property"
-                url={URL + "\n"}
-                hashtags={["Property"]}
-              >
+            <TwitterShareButton
+              className="d-block w-100"
+              title="Property"
+              url={URL + "\n"}
+              hashtags={["Property"]}
+            >
+              <Button bg={"info"} icon={<RiTwitterFill size={20} />}>
                 Twitter
-              </TwitterShareButton>
-            </Button>
+              </Button>
+            </TwitterShareButton>
           </div>
         </div>
       </Dropdown>

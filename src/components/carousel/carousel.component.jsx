@@ -1,7 +1,7 @@
 const Carousel = ({ children, type }) => (
   <div
     id={`carousel-${type}`}
-    className="carousel slide"
+    className="carousel slide h-100"
     data-bs-ride="carousel"
   >
     <div className="carousel-inner">{children}</div>

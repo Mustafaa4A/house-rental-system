@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import BlankPage from "../../components/blank-page/blank-page.component";
+
 const NotFoundPage = () => {
   return (
     <BlankPage>

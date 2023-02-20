@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
-import { GrFavorite } from "react-icons/gr";
+import { useContext } from "react";
+
 import { FaSignOutAlt, FaUserAlt, FaSignInAlt } from "react-icons/fa";
 import { FcSettings, FcFeedback } from "react-icons/fc";
-import { MdDelete } from "react-icons/md";
-import Button from "../button/button.component";
+import { TbBuildingPavilon } from "react-icons/tb";
+
 import Avator from "../avator/avator.component";
 import Dropdown from "../dropdown/dropdown.component";
 import DropdownItem from "../dropdown-item/dropdown-item.component";
+import UserFavorites from "../user-favorites/user-favorites.component";
+
 import { userSignOut } from "../../utils/firebase/authentication.util";
-import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
-import Logo from "../../assets/house-logo.png";
+
 import UserBg from "../../assets/bg-user.png";
-import data from "../../properties.json";
+
 import "./header.styles.css";
 
 const Header = () => {
@@ -37,48 +39,12 @@ const Header = () => {
         </button>
         <h1 className="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
           <Link to={"/"}>
-            <img
-              src={Logo}
-              width="110"
-              height="32"
-              alt="Logo"
-              className="navbar-brand-image"
-            />
+            <TbBuildingPavilon size={45} />
           </Link>
         </h1>
         <div className="navbar-nav flex-row order-md-last">
           <div className="nav-item dropdown d-none d-md-flex me-3">
-            <div className="btn-list">
-              <Button icon={<GrFavorite size={23} />} data-bs-toggle="dropdown">
-                Favorites
-                {data.length && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge bg-red rounded-circle">
-                    {data.length}
-                  </span>
-                )}
-              </Button>
-              <Dropdown>
-                {data.map((property) => (
-                  <DropdownItem>
-                    <Avator
-                      size={"md"}
-                      display={"md"}
-                      to={`/properties/${property.id}`}
-                      img={property.img}
-                      name={property.title}
-                      title={`Price: ${property.price}`}
-                    />
-                    <span className="position-absolute top-0 end-0 m-2">
-                      <MdDelete
-                        size={18}
-                        className="text-danger"
-                        onClick={() => alert(property.id)}
-                      />
-                    </span>
-                  </DropdownItem>
-                ))}
-              </Dropdown>
-            </div>
+            <div className="btn-list">{currentUser && <UserFavorites />}</div>
           </div>
           <div className="nav-item dropdown">
             {currentUser ? (
@@ -88,7 +54,7 @@ const Header = () => {
                 target={"dropdown"}
                 img={currentUser.photoURL || UserBg}
                 name={currentUser.displayName && currentUser.displayName}
-                title={currentUser.displayName && "Owner"}
+                title={currentUser.displayName && "User"}
               />
             ) : (
               <Link to={"/auth/sign-in"} type="button" className="nav-link">
@@ -97,7 +63,7 @@ const Header = () => {
               </Link>
             )}
             <Dropdown>
-              <DropdownItem to={""} icon={<FaUserAlt />}>
+              <DropdownItem to={"/auth/profile"} icon={<FaUserAlt />}>
                 Profile & account
               </DropdownItem>
               <DropdownItem to={""} icon={<FcFeedback />}>

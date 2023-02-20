@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash, FaFacebook } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import BlankPage from "../../components/blank-page/blank-page.component";
-import FormButton from "../../components/form-button/form-button.component";
-import InputControl from "../../components/input-control/input-control.component";
-import Message from "../../components/message/message.component";
+
 import {
   createUserFromAuth,
   createUserFromEmailAndPassword,
 } from "../../utils/firebase/authentication.util";
 import Logo from "../../assets/house-logo.png";
-import "./sign-up.styles.css";
+
+import BlankPage from "../../components/blank-page/blank-page.component";
+import FormButton from "../../components/form-button/form-button.component";
+import InputControl from "../../components/input-control/input-control.component";
+import Message from "../../components/message/message.component";
 import Modal from "../../components/modal/modal.component";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { BiError } from "react-icons/bi";
+import { TbBuildingPavilon } from "react-icons/tb";
+
+import "./sign-up.styles.css";
 //
 const DEFAULT_FORM = {
   displayName: "",
@@ -54,7 +59,7 @@ const SignUp = () => {
     try {
       const { user } = await createUserFromEmailAndPassword(email, password);
       await createUserFromAuth(user, { displayName });
-      navigate("/sign-in");
+      navigate("/auth/sign-in");
       resetForm();
     } catch (error) {
       if (error.code === "auth/invalid-email") {
@@ -92,9 +97,9 @@ const SignUp = () => {
 
   return (
     <BlankPage>
-      <div className="text-center mb-4">
+      <div className="text-center mb-2">
         <Link to="/" class="navbar-brand navbar-brand-autodark">
-          <img src={Logo} height="36" alt="" />
+          <TbBuildingPavilon size={45} className="text-dark" />
         </Link>
       </div>
 
@@ -137,12 +142,9 @@ const SignUp = () => {
             onChange={handlerChange}
             icon={
               isVisible ? (
-                <FaEye style={{ fontSize: "1.2em" }} onClick={visibleHandler} />
+                <FaEye size={18} onClick={visibleHandler} />
               ) : (
-                <FaEyeSlash
-                  style={{ fontSize: "1.2em" }}
-                  onClick={visibleHandler}
-                />
+                <FaEyeSlash size={18} onClick={visibleHandler} />
               )
             }
           />
@@ -156,12 +158,9 @@ const SignUp = () => {
             onChange={handlerChange}
             icon={
               isVisible ? (
-                <FaEye style={{ fontSize: "1.2em" }} onClick={visibleHandler} />
+                <FaEye size={18} onClick={visibleHandler} />
               ) : (
-                <FaEyeSlash
-                  style={{ fontSize: "1.2em" }}
-                  onClick={visibleHandler}
-                />
+                <FaEyeSlash size={18} onClick={visibleHandler} />
               )
             }
           />

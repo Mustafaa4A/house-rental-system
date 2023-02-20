@@ -1,7 +1,7 @@
 const Dropdown = ({ children, ...other }) => {
   return (
     <div
-      className="dropdown-menu dropdown-menu-end dropdown-menu-arrow p-2"
+      className="dropdown-menu dropdown-menu-end dropdown-menu-arrow shadow pt-2"
       {...other}
     >
       {children}

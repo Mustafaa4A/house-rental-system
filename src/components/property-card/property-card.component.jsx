@@ -1,11 +1,17 @@
-import { FaBed, FaBath } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import FavoriteButton from "../favorite-button/favorite-button.component";
-const PropertyCard = ({ title, img, to }) => {
+
+import { FaBed, FaBath } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
+import FavoriteIcon from "../favorite-icon/favorite-icon.component";
+
+const PropertyCard = ({ property, to }) => {
+  const { name, description, price, img, bedrooms, bathrooms, squareArea } =
+    property;
+
   return (
     <div className="card m-3 shadow card-link-pop ">
       <div className="position-absolute top-20 end-0 mt-2">
-        <FavoriteButton />
+        <FavoriteIcon property={property} />
       </div>
       <Link to={to} className="nav-link">
         <div class="row">
@@ -14,26 +20,25 @@ const PropertyCard = ({ title, img, to }) => {
           </div>
           <div class="col">
             <div class="card-body">
-              <h3 class="card-title">{title}</h3>
-              <div>
-                <p className="text-muted mb-1">
-                  Jalan Sultan Ibrahim Off Lebuhraya Sultan Iskandar, Tanjung...
-                </p>
-                <p className="text-uppercase font-weight-bold badge bg-yellow">
-                  $400/Month
-                </p>
-              </div>
+              <h3 class="card-title mb-2">{name}</h3>
+              <p className="text-muted mb-2">
+                {`${description.substr(0, 100)}...`}
+              </p>
+              <p className="text-uppercase font-weight-bold badge bg-yellow">
+                {`$${price}/Month`}
+              </p>
+
               <div className="text-muted">
                 <section className="d-inline-block me-3">
-                  <span>5</span>
+                  <span>{bedrooms}</span>
                   <FaBed className="ms-2" />
                 </section>
                 <section className="d-inline-block me-3">
-                  <span>2</span>
+                  <span>{bathrooms}</span>
                   <FaBath className="ms-2" />
                 </section>
                 <section className="d-inline-block me-3">
-                  <span>2230 sqlmeter</span>
+                  <span>{squareArea} sqlmeter</span>
                 </section>
               </div>
             </div>

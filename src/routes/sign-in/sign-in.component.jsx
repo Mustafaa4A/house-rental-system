@@ -1,23 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/user.context";
-import Button from "../../components/button/button.component";
-import InputControl from "../../components/input-control/input-control.component";
+
 import {
   signInUsingEmailAndPasswor,
   signInWithFacebook,
   signInWithGoogle,
 } from "../../utils/firebase/authentication.util";
-import { FaFacebook, FaGoogle, FaEyeSlash, FaEye } from "react-icons/fa";
+
+import { TbBuildingPavilon } from "react-icons/tb";
+import { FaFacebook, FaEyeSlash, FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BiError } from "react-icons/bi";
-import { useEffect } from "react";
+
+import Button from "../../components/button/button.component";
+import InputControl from "../../components/input-control/input-control.component";
 import BlankPage from "../../components/blank-page/blank-page.component";
-import Logo from "../../assets/house-logo.png";
 import FormButton from "../../components/form-button/form-button.component";
-import "./sign-in.styles.css";
 import Message from "../../components/message/message.component";
 import Modal from "../../components/modal/modal.component";
+import "./sign-in.styles.css";
 
 const DEFAULT_FORM = {
   email: "",
@@ -105,9 +106,9 @@ const SignIn = () => {
 
   return (
     <BlankPage>
-      <div className="text-center mb-4">
+      <div className="text-center mb-2">
         <Link to="/" className="navbar-brand navbar-brand-autodark">
-          <img src={Logo} height="36" alt="" />
+          <TbBuildingPavilon size={45} className="text-dark" />
         </Link>
       </div>
 
@@ -142,12 +143,9 @@ const SignIn = () => {
             onChange={handlerChange}
             icon={
               isVisible ? (
-                <FaEye style={{ fontSize: "1.2em" }} onClick={visibleHandler} />
+                <FaEye size={18} onClick={visibleHandler} />
               ) : (
-                <FaEyeSlash
-                  style={{ fontSize: "1.2em" }}
-                  onClick={visibleHandler}
-                />
+                <FaEyeSlash size={18} onClick={visibleHandler} />
               )
             }
           />

@@ -12,6 +12,8 @@ const Avator = ({ to, size, display, target, img, name, title }) => {
         className={`avatar avatar-${size}`}
         style={{
           backgroundImage: `url(${img})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top",
         }}
       ></span>
       {(name || title) && (

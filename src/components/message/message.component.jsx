@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import "./message.styles.css";
 
 const Message = ({ children, icon, closeModal }) => {
+  useEffect(() => {
+    const audio = new Audio(
+      "http://freesoundeffect.net/sites/default/files/incorrect-answer--1-sound-effect-27493287.mp3"
+    );
+    audio.play();
+  }, []);
   return (
     <div>
       <div className="modal-body text-center py-4">
